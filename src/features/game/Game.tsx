@@ -40,7 +40,7 @@ const Game = () => {
       <S.WinnerContainer>
         <h2>{getGameMessage(winner, finished, turn.name)}</h2>
         <Button
-          disabled={!winner || !finished}
+          disabled={!finished}
           onClick={() => {
             window.location.href = "/";
           }}
