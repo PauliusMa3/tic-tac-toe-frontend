@@ -4,10 +4,8 @@ import ActionHistory from "../../components/ActionHistory";
 import Board from "../../components/Board";
 import * as S from "./Game.styles";
 import Button from "../../components/Button";
-import { useHistory } from "react-router";
 
 const Game = () => {
-  let history = useHistory();
   const { winner, gameBoard, finished, turn } = useAppSelector(
     (state: RootState) => state.game
   );
