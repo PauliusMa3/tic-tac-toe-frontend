@@ -4,9 +4,10 @@ export const ActionHistoryContainer = styled.div`
   padding: 2rem;
   box-shadow: var(--shadow-color);
   display: flex;
-  justify-content: center;
   flex-direction: column;
   border-radius: 10px;
+  height: 30rem;
+  overflow: auto;
 
   h2 {
     text-align: center;

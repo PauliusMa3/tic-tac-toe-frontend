@@ -8,7 +8,7 @@ import { useHistory } from "react-router";
 
 const Game = () => {
   let history = useHistory();
-  const { winner, gameBoard, finished } = useAppSelector(
+  const { winner, gameBoard, finished, turn } = useAppSelector(
     (state: RootState) => state.game
   );
 
@@ -22,37 +22,36 @@ const Game = () => {
 
     return actionLog;
   };
+
+  const getGameMessage = (
+    winner: string,
+    finished: boolean,
+    playerTurnName: string | undefined
+  ) => {
+    if (winner) {
+      return `${winner} has won the game`;
+    }
+
+    if (!finished && playerTurnName) {
+      return `Next Move: ${playerTurnName}`;
+    }
+    return `It's a tie`;
+  };
   return (
     <S.GameContainer>
-      {winner && finished ? (
-        <S.WinnerContainer>
-          <h2>{`${winner} has won the game`}</h2>
-          <Button
-            onClick={() => {
-              history.push({
-                pathname: "/"
-              });
-            }}
-          >
-            Start New Game
-          </Button>
-        </S.WinnerContainer>
-      ) : null}
-
-      {!winner && finished ? (
-        <S.WinnerContainer>
-          <h2>It's a tie</h2>
-          <Button
-            onClick={() => {
-              history.push({
-                pathname: "/"
-              });
-            }}
-          >
-            Start New Game
-          </Button>
-        </S.WinnerContainer>
-      ) : null}
+      <S.WinnerContainer>
+        <h2>{getGameMessage(winner, finished, turn.name)}</h2>
+        <Button
+          disabled={!winner || !finished}
+          onClick={() => {
+            history.push({
+              pathname: "/"
+            });
+          }}
+        >
+          Start New Game
+        </Button>
+      </S.WinnerContainer>
       <Board />
       <ActionHistory actionHistoryItems={getActionLogItems()} />
     </S.GameContainer>
