@@ -44,9 +44,7 @@ const Game = () => {
         <Button
           disabled={!winner || !finished}
           onClick={() => {
-            history.push({
-              pathname: "/"
-            });
+            window.location.href = "/";
           }}
         >
           Start New Game

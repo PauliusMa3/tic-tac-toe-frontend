@@ -3,6 +3,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Route, Switch } from "react-router-dom";
 import NewGamePage from "./pages/NewGame";
 import GamePage from "./pages/Game";
+import { BrowserRouter } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -57,10 +58,12 @@ function App() {
   return (
     <ThemeProvider theme={{}}>
       <GlobalStyle />
-      <Switch>
-        <Route exact path="/" component={NewGamePage} />
-        <Route exact path="/game/:id" component={GamePage} />
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={NewGamePage} />
+          <Route exact path="/game/:id" component={GamePage} />
+        </Switch>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
